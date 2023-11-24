@@ -1,0 +1,15 @@
+.home-break-line {
+    font-size: 4rem;
+    font-family: PoppinsBold;
+    max-height: rem(80px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgb(240 240 240 / 65%);
+    background-color: #e7e7e7;
+
+    p {
+        letter-spacing: .6rem;
+    }
+
+}

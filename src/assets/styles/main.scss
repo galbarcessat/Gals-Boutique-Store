@@ -1,0 +1,24 @@
+// // RESET
+@import "setup/_reset";
+
+// // SETUP
+@import 'setup/_typography';
+@import "setup/_variables";
+@import "setup/_mixins";
+@import "setup/_functions";
+
+// // BASICS
+@import "base/_helpers";
+@import "base/_base";
+@import "base/_layout";
+
+// // COMPONENTS
+@import "./cmps/HomeNavBar.scss";
+@import "./cmps/HomeHero.scss";
+@import "./cmps/HomeBreakLine.scss";
+@import "./cmps/CategoriesList.scss";
+@import "./cmps/CategoryCard.scss";
+
+// //PAGES
+
+//MQ

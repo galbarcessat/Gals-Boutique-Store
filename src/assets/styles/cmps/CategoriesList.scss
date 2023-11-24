@@ -1,0 +1,32 @@
+.categories-section {
+
+    .categories-section-heading {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-block-start: 7rem;
+        gap: 1rem;
+
+        h1 {
+            font-size: 2rem;
+            font-family: PoppinsMedium;
+        }
+
+        p {
+            color: #878787;
+            font-style: italic;
+            font-size: rem(14px);
+        }
+    }
+
+    .categories-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+        padding: 3.5rem;
+        padding-inline: 10rem;
+    }
+}
