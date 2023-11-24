@@ -7,7 +7,7 @@ export function HomeHero() {
             <div className="hero-inner-container">
 
                 <div className="hero-text">
-                    <h1>Gal's Boutique</h1>
+                    <h1>Gal Design</h1>
                     <div className="main-p">
                         <p>Find the best</p>
                         <p>fashion style</p>

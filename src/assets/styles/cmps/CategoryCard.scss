@@ -9,10 +9,14 @@
     cursor: pointer;
 
     img {
-        width: rem(250px);
-        height: rem(250px);
+        width: rem(230px);
+        height: rem(230px);
         border-radius: 1rem;
         transition: all .3s;
+    }
+
+    h1 {
+        text-transform: capitalize;
     }
 
     &:hover {

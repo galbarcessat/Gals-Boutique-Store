@@ -1,4 +1,4 @@
-import { CategoryCard } from "./CategoryCard";
+import { CategoryPreview } from "./CategoryPreview";
 
 export function CategoriesList({ getAllCategories }) {
 
@@ -10,7 +10,7 @@ export function CategoriesList({ getAllCategories }) {
             </div>
             <div className="categories-container">
                 {getAllCategories().map(category => (
-                    <CategoryCard category={category} />
+                    <CategoryPreview category={category} key={category.id}/>
                 ))}
             </div>
         </section>

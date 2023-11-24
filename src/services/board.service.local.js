@@ -177,11 +177,11 @@ async function _createProducts() {
         try {
             console.log('Fetching products from API:')
             let res = await axios.get('https://api.escuelajs.co/api/v1/products')
+
+            const filterTitles = ['New Product', 'saody', 'Mayu', 'Bespoke Soft Keyboard', '0000', 'qqqq', 'Change title', 'sdvcsx', '2g', '222222g']
             let filteredProducts = res.data.filter(product =>
-                product.title !== 'New Product' &&
-                product.title !== 'saody' &&
-                product.title !== 'Mayu' &&
-                !product.title.includes('test'))
+                !filterTitles.includes(product.title) && !product.title.includes('test')
+            )
 
             utilService.saveToStorage(STORAGE_KEY, filteredProducts)
         } catch (error) {

@@ -6,6 +6,9 @@ import { HomeNavBar } from "../cmps/HomeNavBar"
 import { HomeHero } from "../cmps/HomeHero"
 import { HomeBreakLine } from "../cmps/HomeBreakLine"
 import { CategoriesList } from "../cmps/CategoriesList"
+import { FeaturedProducts } from "../cmps/FeaturedProducts"
+import { DiscountShowing } from "../cmps/DiscountShowing"
+import { Footer } from "../cmps/Footer"
 export function HomePage() {
     const products = useSelector(state => state.boardModule.boards)
 
@@ -20,8 +23,15 @@ export function HomePage() {
             }
             return acc
         }, [])
+        categories.length > 0 ? categories.find(cat => cat.name === 'clothing').image = 'https://i.imgur.com/R2PN9Wq.jpeg' : []
+        
         console.log('categories:', categories)
         return categories
+    }
+
+    function getFeaturedProducts() {
+        const shuffledProducts = [...products].sort(() => Math.random() - 0.5);
+        return shuffledProducts.splice(0, 4)
     }
 
     return (
@@ -29,7 +39,10 @@ export function HomePage() {
             <HomeNavBar />
             <HomeHero />
             <HomeBreakLine />
-            <CategoriesList getAllCategories={getAllCategories}/>
+            <CategoriesList getAllCategories={getAllCategories} />
+            <FeaturedProducts getFeaturedProducts={getFeaturedProducts} />
+            <DiscountShowing />
+            <Footer />
         </section>
     )
 }

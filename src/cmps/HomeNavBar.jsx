@@ -8,7 +8,7 @@ export function HomeNavBar() {
             <div className='nav-bar-inner-container'>
             <div className="nav-logo">
                 <img src={StoreLogo} alt="" />
-                <h1>Gal's Boutique <span>.</span></h1>
+                <h1>Gal Design <span>.</span></h1>
             </div>
 
             <img src={CartIcon} alt="" />
