@@ -1,6 +1,18 @@
+import { useDispatch } from 'react-redux';
 import HeroImg from '../assets/imgs/HeroImg.png'
+import { useNavigate } from 'react-router-dom';
+import { SET_CATEGORY } from '../store/reducers/board.reducer';
 
 export function HomeHero() {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    function navToProductPage() {
+        dispatch({
+            type: SET_CATEGORY, selectedCategory: null
+        })
+        navigate('/product')
+    }
 
     return (
         <section className="home-hero-container main-layout full">
@@ -13,7 +25,7 @@ export function HomeHero() {
                         <p>fashion style</p>
                         <p>for you</p>
                     </div>
-                    <button>SHOP NOW</button>
+                    <button onClick={navToProductPage}>SHOP NOW</button>
                 </div>
                 <img src={HeroImg} alt="" />
             </div>

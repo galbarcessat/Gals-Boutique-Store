@@ -25,6 +25,11 @@ export async function getBoardById(boardId, filterBy, sortBy) {
     }
 }
 
+export function getProductById(productId) {
+    const products = store.getState().boardModule.boards
+    return products.find(product => product.id === productId)
+}
+
 export async function addBoard() {
     // const owner = loggedInUser
     //CHANGE LATER TO A STARTER BOARD - MAKE DEMO DATA FOR IT!

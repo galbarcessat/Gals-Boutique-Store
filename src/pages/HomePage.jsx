@@ -9,6 +9,7 @@ import { CategoriesList } from "../cmps/CategoriesList"
 import { FeaturedProducts } from "../cmps/FeaturedProducts"
 import { DiscountShowing } from "../cmps/DiscountShowing"
 import { Footer } from "../cmps/Footer"
+import { boardService } from "../services/board.service.local"
 export function HomePage() {
     const products = useSelector(state => state.boardModule.boards)
 
@@ -16,33 +17,22 @@ export function HomePage() {
         loadProducts()
     }, [])
 
-    function getAllCategories() {
-        let categories = products.reduce((acc, product) => {
-            if (!acc.some(cat => cat.name === product.category.name)) {
-                acc.push(product.category)
-            }
-            return acc
-        }, [])
-        categories.length > 0 ? categories.find(cat => cat.name === 'clothing').image = 'https://i.imgur.com/R2PN9Wq.jpeg' : []
-        
-        console.log('categories:', categories)
-        return categories
-    }
 
     function getFeaturedProducts() {
         const shuffledProducts = [...products].sort(() => Math.random() - 0.5);
         return shuffledProducts.splice(0, 4)
     }
+    function getAllCategories() {
+        return boardService.getAllCategories(products)
+    }
 
     return (
         <section className="main-layout">
-            <HomeNavBar />
             <HomeHero />
             <HomeBreakLine />
             <CategoriesList getAllCategories={getAllCategories} />
             <FeaturedProducts getFeaturedProducts={getFeaturedProducts} />
             <DiscountShowing />
-            <Footer />
         </section>
     )
 }
