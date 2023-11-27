@@ -2,14 +2,13 @@
 import { useEffect } from "react"
 import { loadProducts } from "../store/actions/board.action"
 import { useSelector } from "react-redux"
-import { HomeNavBar } from "../cmps/HomeNavBar"
 import { HomeHero } from "../cmps/HomeHero"
 import { HomeBreakLine } from "../cmps/HomeBreakLine"
 import { CategoriesList } from "../cmps/CategoriesList"
 import { FeaturedProducts } from "../cmps/FeaturedProducts"
 import { DiscountShowing } from "../cmps/DiscountShowing"
-import { Footer } from "../cmps/Footer"
 import { boardService } from "../services/board.service.local"
+
 export function HomePage() {
     const products = useSelector(state => state.boardModule.boards)
 

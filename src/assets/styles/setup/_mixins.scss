@@ -44,3 +44,18 @@
             background-color: rgb(227, 227, 227);
         }
 }
+
+@mixin btnDesign(){
+    background-color: #FA6A69;
+    border: none;
+    font-family: PoppinsMedium;
+    color: white;
+    padding: .7rem 2.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .5s;
+
+    &:hover {
+        background-color: rgb(255, 79, 79);
+    }
+}

@@ -3,17 +3,24 @@ import { Route, HashRouter as Router, Routes } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
 import './assets/styles/main.scss'
+import { useEffect, useState } from 'react'
+
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 
 import { HomePage } from './pages/HomePage'
 import { ProductDetails } from './cmps/ProductDetails'
 import { ProductsPage } from './pages/ProductsPage'
 import { HomeNavBar } from './cmps/HomeNavBar'
 import { Footer } from './cmps/Footer'
-import { useState } from 'react'
 import { ShoppingCart } from './cmps/ShoppingCart'
 
 export function App() {
   const [isCartOpen, setIsCartOpen] = useState(false)
+
+  useEffect(() => {
+    Aos.init()
+  }, [])
 
   return (
     <Provider store={store}>
@@ -33,7 +40,7 @@ export function App() {
         </Routes>
         <Footer />
 
-        <ShoppingCart setIsCartOpen={setIsCartOpen} isCartOpen={isCartOpen}/>
+        <ShoppingCart setIsCartOpen={setIsCartOpen} isCartOpen={isCartOpen} />
       </Router>
     </Provider>
   )

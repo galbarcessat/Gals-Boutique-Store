@@ -18,7 +18,7 @@ export function HomeHero() {
         <section className="home-hero-container main-layout full">
             <div className="hero-inner-container">
 
-                <div className="hero-text">
+                <div className="hero-text" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-delay="50">
                     <h1>Gal Design</h1>
                     <div className="main-p">
                         <p>Find the best</p>
@@ -27,7 +27,7 @@ export function HomeHero() {
                     </div>
                     <button onClick={navToProductPage}>SHOP NOW</button>
                 </div>
-                <img src={HeroImg} alt="" />
+                <img src={HeroImg} alt="" data-aos="fade-left" data-aos-easing="ease-in-out" data-aos-delay="50"/>
             </div>
         </section>
     )

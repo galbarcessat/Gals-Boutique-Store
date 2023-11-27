@@ -29,7 +29,7 @@ export function ProductDetails() {
                         {currProduct.images.map(imgUrl => <img onClick={() => setMainImg(imgUrl)} key={imgUrl} src={imgUrl} alt="" />)}
                     </div>
                 </div>
-                <div className='product-details-text'>
+                <div className='product-details-text' data-aos="fade-up" data-aos-easing="ease-in-out" >
                     <h1>{currProduct.title}</h1>
                     <p>{currProduct.description}</p>
                     <p>Category : {currProduct.category.name}</p>
