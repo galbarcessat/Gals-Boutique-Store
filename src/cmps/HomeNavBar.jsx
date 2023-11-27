@@ -17,6 +17,13 @@ export function HomeNavBar({ setIsCartOpen }) {
         navigate('/')
     }
 
+    function getCartAmount() {
+        if (shoppingCart.length === 0) return 0
+        else return shoppingCart.reduce((acc, product) => {
+            return acc + product.amount
+        }, 0)
+    }
+
     return (
         <div className="nav-bar-contianer main-layout full">
             <div className='nav-bar-inner-container'>
@@ -27,7 +34,7 @@ export function HomeNavBar({ setIsCartOpen }) {
 
                 <div className='cart-icon-container' onClick={() => setIsCartOpen(true)}>
                     <img className='cart-icon' src={CartIcon} alt="" />
-                    <div className='cart-items-counter'>{shoppingCart.length}</div>
+                    <div className='cart-items-counter'>{getCartAmount()}</div>
                 </div>
             </div>
         </div>

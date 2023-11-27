@@ -8,6 +8,7 @@ export const SET_CATEGORY = 'SET_CATEGORY'
 export const SET_SHOPPING_CART = 'SET_SHOPPING_CART'
 export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
 export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART'
+export const UPDATE_CART = 'UPDATE_CART'
 
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
@@ -45,10 +46,15 @@ export function boardReducer(state = initialState, action) {
 
         case REMOVE_ITEM_FROM_CART:
             newShoppingCart = state.shoppingCart.filter(product => product.id !== action.productId)
+            console.log('newShoppingCart:', newShoppingCart)
             return { ...state, shoppingCart: newShoppingCart }
 
         case ADD_ITEM_TO_CART:
             newShoppingCart = [...state.shoppingCart, action.product]
+            return { ...state, shoppingCart: newShoppingCart }
+
+        case UPDATE_CART:
+            newShoppingCart = state.shoppingCart.map(product => (product.id === action.product.id ? action.product : product))
             return { ...state, shoppingCart: newShoppingCart }
 
         case SET_IS_LOADING:

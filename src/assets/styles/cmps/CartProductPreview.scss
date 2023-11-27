@@ -1,0 +1,90 @@
+.cart-product-preview {
+    display: flex;
+    width: 100%;
+    height: 120px;
+    border-bottom: 1px solid lightgray;
+    margin-top: 20px;
+    padding-bottom: 20px;
+
+    &:last-of-type {
+        border-bottom: none;
+    }
+
+    img {
+        width: rem(80px);
+        height: rem(100px);
+    }
+
+    .product-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 1rem;
+        width: 100%;
+
+        .upper-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: PoppinsMedium;
+
+            .btn-remove-product {
+                @include xBtn()
+            }
+        }
+
+        .lower-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+
+            .amount-and-price-container {
+                display: flex;
+                align-items: center;
+                gap: .5rem;
+
+                .product-amount-changer {
+                    display: flex;
+                    align-items: center;
+                    width: 60px;
+                    height: 20px;
+
+                    .btn-change-amount {
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 1px solid grey;
+                        width: 33%;
+                        height: 100%;
+
+                        &:first-of-type {
+                            border-top-left-radius: 10px;
+                            border-bottom-left-radius: 10px;
+                        }
+
+                        &:last-of-type {
+                            border-top-right-radius: 10px;
+                            border-bottom-right-radius: 10px;
+                        }
+
+                    }
+
+                    .amount-counter {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        width: 33%;
+                        border-block: 1px solid grey;
+                    }
+                }
+            }
+
+            .product-total-price {
+                font-weight: 600;
+            }
+        }
+    }
+}

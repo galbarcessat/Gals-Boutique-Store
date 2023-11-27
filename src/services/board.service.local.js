@@ -174,8 +174,8 @@ function getAllCategories(products) {
         }
         return acc
     }, [])
+
     categories.length > 0 ? categories.find(cat => cat.name === 'clothing').image = 'https://i.imgur.com/R2PN9Wq.jpeg' : []
 
-    console.log('categories:', categories)
     return categories
 }

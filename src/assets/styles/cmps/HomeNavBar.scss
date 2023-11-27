@@ -1,6 +1,7 @@
 .nav-bar-contianer {
     height: rem(70px);
     background-color: white;
+    // background-color: #F8F8F8;
     // border-bottom: 1px solid lightgray;
     // box-shadow: 0 4px 4px #1d8cf214;
     position: sticky;
@@ -36,7 +37,6 @@
 
     .cart-icon-container {
         position: relative;
-        font-size: rem(14px);
         cursor: pointer;
 
         .cart-items-counter {
@@ -53,6 +53,8 @@
             left: 16px;
             width: 18px;
             height: 18px;
+            font-size: 13px;
+
         }
 
     }

@@ -17,7 +17,6 @@ export function HomePage() {
         loadProducts()
     }, [])
 
-
     function getFeaturedProducts() {
         const shuffledProducts = [...products].sort(() => Math.random() - 0.5);
         return shuffledProducts.splice(0, 4)
@@ -36,18 +35,3 @@ export function HomePage() {
         </section>
     )
 }
-
-{/* <div>
-{getAllCategories().map(category => <span key={category.id} className="category-name">{category.name}</span>)}
-</div> */}
-
-//  {/* CategoryList */}
-//  <div className="categories-container">
-//  {getAllCategories().map(category => (
-//      // CategoryPreview
-//      <div key={category.id} className="category-card">
-//          <img src={category.image} alt={category.name + 'image'} />
-//          <h1>{category.name}</h1>
-//      </div>
-//  ))}
-// </div>

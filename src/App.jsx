@@ -32,8 +32,8 @@ export function App() {
 
         </Routes>
         <Footer />
-        
-        {isCartOpen && <ShoppingCart />}
+
+        <ShoppingCart setIsCartOpen={setIsCartOpen} isCartOpen={isCartOpen}/>
       </Router>
     </Provider>
   )

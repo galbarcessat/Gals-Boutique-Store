@@ -1,19 +1,10 @@
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { ADD_ITEM_TO_CART } from '../store/reducers/board.reducer'
+import { addToCart } from '../store/actions/board.action'
 
 export function ProductPreview({ product }) {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
 
-    function addToCart(ev) {
-        ev.stopPropagation()
-        dispatch({
-            type: ADD_ITEM_TO_CART, product: product
-        })
-    }
-
-    return (
+       return (
         <div className="product-preview-container" onClick={() => navigate(`/product/${product.id}`)}>
             <img src={product.images[0]} alt="" />
             <h1>{product.title}</h1>
@@ -25,7 +16,7 @@ export function ProductPreview({ product }) {
                     <path d="M16 12.268c-2.058 0-3.732 1.674-3.732 3.732s1.674 3.732 3.732 3.732c2.058 0 3.732-1.674 3.732-3.732s-1.674-3.732-3.732-3.732zM16 18.666c-1.47 0-2.666-1.196-2.666-2.666s1.196-2.666 2.666-2.666 2.666 1.196 2.666 2.666c0 1.47-1.196 2.666-2.666 2.666z"></path>
                 </svg>
             </div>
-            <button onClick={(event) => addToCart(event)}>Add to cart</button>
+            <button onClick={(event) => addToCart(event,product)}>Add to cart</button>
         </div>
     )
 }

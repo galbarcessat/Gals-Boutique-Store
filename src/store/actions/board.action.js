@@ -1,5 +1,5 @@
 import { store } from '../store'
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, UPDATE_BOARDS } from '../reducers/board.reducer'
+import { ADD_BOARD, ADD_ITEM_TO_CART, REMOVE_BOARD, SET_BOARDS, UPDATE_BOARDS, UPDATE_CART } from '../reducers/board.reducer'
 import { boardService } from '../../services/board.service.local'
 
 
@@ -27,7 +27,29 @@ export async function getBoardById(boardId, filterBy, sortBy) {
 
 export function getProductById(productId) {
     const products = store.getState().boardModule.boards
+    console.log('test:', store.getState().boardModule)
+    console.log('products FROM ACTION :', products)
     return products.find(product => product.id === productId)
+}
+
+export function addToCart(ev, product) {
+    ev.stopPropagation()
+    const productsInCart = store.getState().boardModule.shoppingCart
+    console.log('productsInCart:', productsInCart)
+    let productFromCart = productsInCart.find(item => item.id === product.id)
+    console.log('productFromCart:', productFromCart)
+    if (productFromCart) {
+        productFromCart.amount++
+        store.dispatch({
+            type: UPDATE_CART, product: productFromCart
+        })
+    } else {
+        let productToCart = { ...product, amount: 1 }
+        console.log('productToCart:', productToCart)
+        store.dispatch({
+            type: ADD_ITEM_TO_CART, product: productToCart
+        })
+    }
 }
 
 export async function addBoard() {
