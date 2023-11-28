@@ -1,20 +1,23 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import CartIcon from '../assets/imgs/CartIcon.png'
 import CloseIcon from '@mui/icons-material/Close';
 import { CartProductList } from "./CartProductList"
+import { useNavigate } from "react-router-dom";
+import { closeCart, getTotalProductsPrice } from "../store/actions/board.action"
 
-export function ShoppingCart({ setIsCartOpen, isCartOpen }) {
+export function ShoppingCart() {
     const shoppingCart = useSelector(state => state.boardModule.shoppingCart)
+    const isCartOpen = useSelector(state => state.boardModule.isCartOpen)
+    const navigate = useNavigate()
 
-    function getTotalProductsPrice() {
-        return shoppingCart.map(product => product.amount * product.price).reduce((acc, price) => {
-            return acc + price
-        }, 0)
+    function onCheckout() {
+        navigate('/checkout')
+        closeCart()
     }
 
     return (
         <div className={"shopping-cart-container " + (isCartOpen ? 'open' : '')}>
-            <div onClick={() => setIsCartOpen(false)} className="btn-exit-cart">
+            <div onClick={() => closeCart()} className="btn-exit-cart">
                 <CloseIcon />
             </div>
             <div className="cart-header">
@@ -29,7 +32,7 @@ export function ShoppingCart({ setIsCartOpen, isCartOpen }) {
 
             {shoppingCart.length > 0 && <div className="cart-footer">
                 <div className="cart-products-total-price"><span>Total : </span> <span>$ {getTotalProductsPrice()}</span></div>
-                <button className="btn-checkout">CHECKOUT</button>
+                <button onClick={() => onCheckout()} className="btn-checkout">CHECKOUT</button>
             </div>}
         </div>
     )

@@ -1,31 +1,6 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { REMOVE_ITEM_FROM_CART, UPDATE_CART } from "../store/reducers/board.reducer"
+import { onChangeAmount, onRemoveCartProduct } from "../store/actions/board.action"
 
 export function CartProductPreview({ product }) {
-    const dispatch = useDispatch()
-
-    function onChangeAmount(action) {
-        if (action === '-') {
-            if (product.amount === 1) {
-                onRemoveCartProduct()
-                return
-            }
-            product.amount--
-        } else if (action === '+') {
-            product.amount++
-        }
-
-        dispatch({
-            type: UPDATE_CART, product: product
-        })
-    }
-
-    function onRemoveCartProduct() {
-        dispatch({
-            type: REMOVE_ITEM_FROM_CART, productId: product.id
-        })
-    }
 
     return (
         <div className="cart-product-preview">
@@ -42,13 +17,13 @@ export function CartProductPreview({ product }) {
                 <div className="lower-container">
                     <div className="amount-and-price-container">
                         <div className="product-amount-changer">
-                            <span className="btn-change-amount" onClick={() => onChangeAmount('-')}>-</span>
+                            <span className="btn-change-amount" onClick={() => onChangeAmount('-', product)}>-</span>
                             <span className="amount-counter">{product.amount}</span>
-                            <span className="btn-change-amount" onClick={() => onChangeAmount('+')}>+</span>
+                            <span className="btn-change-amount" onClick={() => onChangeAmount('+', product)}>+</span>
                         </div>
-                        <span className="product-price">x {product.price}$</span>
+                        <span className="product-price">x ${product.price}</span>
                     </div>
-                    <span className="product-total-price">{product.amount * product.price}$</span>
+                    <span className="product-total-price">$ {product.amount * product.price}</span>
                 </div>
 
             </div>

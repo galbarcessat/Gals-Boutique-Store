@@ -1,0 +1,25 @@
+.review-container {
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
+    border-left: 1px solid #efefef;
+
+    &:first-of-type {
+        border-left: none;
+    }
+
+    p {
+        font-size: rem(13px);
+        font-family: PoppinsRegular;
+        line-height: 1.4;
+        color: #888;
+    }
+
+    h1 {
+        font-size: rem(15px);
+        font-weight: 600;
+    }
+}

@@ -5,6 +5,8 @@ export const ADD_BOARD = 'ADD_BOARD'
 
 export const SET_CATEGORY = 'SET_CATEGORY'
 
+export const IS_CART_OPEN = 'IS_CART_OPEN'
+
 export const SET_SHOPPING_CART = 'SET_SHOPPING_CART'
 export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART'
 export const ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART'
@@ -16,6 +18,7 @@ const initialState = {
     boards: [],
     selectedCategory: null,
     shoppingCart: [],
+    isCartOpen: false,
     isLoading: false
 }
 
@@ -40,6 +43,9 @@ export function boardReducer(state = initialState, action) {
 
         case SET_CATEGORY:
             return { ...state, selectedCategory: action.selectedCategory }
+
+        case IS_CART_OPEN:
+            return { ...state, isCartOpen: action.isCartOpen }
 
         case SET_SHOPPING_CART:
             return { ...state, shoppingCart: action.shoppingCart }

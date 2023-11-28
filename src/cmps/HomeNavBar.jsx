@@ -1,10 +1,10 @@
 import CartIcon from '../assets/imgs/CartIcon.png'
 import StoreLogo from '../assets/imgs/StoreLogo.png'
 import { useNavigate } from 'react-router-dom';
-import { SET_CATEGORY } from '../store/reducers/board.reducer';
+import { IS_CART_OPEN, SET_CATEGORY } from '../store/reducers/board.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 
-export function HomeNavBar({ setIsCartOpen }) {
+export function HomeNavBar() {
     const shoppingCart = useSelector(state => state.boardModule.shoppingCart)
 
     const navigate = useNavigate()
@@ -24,6 +24,10 @@ export function HomeNavBar({ setIsCartOpen }) {
         }, 0)
     }
 
+    function openCart(){
+        dispatch({ type: IS_CART_OPEN, isCartOpen: true})
+    }
+
     return (
         <div className="nav-bar-contianer main-layout full">
             <div className='nav-bar-inner-container'>
@@ -32,7 +36,7 @@ export function HomeNavBar({ setIsCartOpen }) {
                     <h1>Gal Design <span>.</span></h1>
                 </div>
 
-                <div className='cart-icon-container' onClick={() => setIsCartOpen(true)}>
+                <div className='cart-icon-container' onClick={() => openCart()}>
                     <img className='cart-icon' src={CartIcon} alt="" />
                     <div className='cart-items-counter'>{getCartAmount()}</div>
                 </div>

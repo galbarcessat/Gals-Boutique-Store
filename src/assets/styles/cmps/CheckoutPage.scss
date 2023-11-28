@@ -1,0 +1,92 @@
+.checkout-container {
+    justify-items: center;
+    margin-block-end: 3.5rem;
+
+    .checkout-title {
+        font-size: 2rem;
+        font-family: PoppinsMedium;
+        margin-block-end: 3.5rem;
+    }
+
+    .checkout-content {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 2rem;
+
+        .left-container {
+            margin-right: 60px;
+
+        }
+
+        .cart-totals-container {
+            border: 3px solid #ececec;
+            padding: 30px;
+            width: rem(380px);
+            height: 24.125rem;
+            font-size: 15px;
+            font-weight: 600;
+
+            .cart-totals-title {
+                font-size: 17px;
+                letter-spacing: 2px;
+                margin-bottom: 10px;
+            }
+
+            .subtotal-container {
+                padding-block: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid #ececec;
+            }
+
+            .shipping-container {
+                display: flex;
+                justify-content: space-between;
+                padding-block: 20px;
+                border-bottom: 1px solid #ececec;
+
+                .shipping-info {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: end;
+
+                    p {
+                        margin-bottom: rem(10px);
+
+                        span {
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+
+            .total-container {
+                display: flex;
+                justify-content: space-between;
+                padding-block: 20px;
+
+                h1 {
+                    font-size: 19px;
+                }
+
+                p {
+                    font-size: 23px;
+                    color: #FA6A69;
+                }
+            }
+
+            button {
+                @include btnDesign();
+                width: 100%;
+            }
+
+            img {
+                margin-top: 20px;
+            }
+        }
+    }
+}

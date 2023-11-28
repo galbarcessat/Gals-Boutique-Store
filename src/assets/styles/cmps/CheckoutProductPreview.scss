@@ -1,0 +1,93 @@
+.checkout-product-preview {
+    display: flex;
+    align-items: center;
+    padding-block: 10px;
+    border-bottom: 1px solid #ececec;
+    font-size: .9rem;
+
+    .product-info {
+        flex: 0.4;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        img {
+            width: 60px;
+            height: 75px;
+        }
+
+        .btn-remove-product {
+            @include xBtn();
+            width: 26px;
+            height: 26px;
+        }
+    }
+
+    .product-price {
+        flex: 0.2;
+        text-align: center;
+    }
+
+    .product-amount-changer-container {
+        flex: 0.2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .inner-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ececec;
+            border-radius: .5rem;
+            width: 65px;
+            height: 40px;
+
+            .amount-counter {
+                width: 40px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-right: 1px solid #ececec;
+            }
+
+            .btns-change {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+
+
+                .btn-change-amount {
+                    cursor: pointer;
+                    text-align: center;
+                    width: 25px;
+                    height: 19px;
+
+                    &:first-of-type {
+                        border-top-right-radius: .5rem;
+                        border-bottom: 1px solid #ececec;
+                    }
+
+                    &:not(:first-of-type) {
+                        border-bottom-right-radius: .5rem;
+                    }
+
+                    &:hover {
+                        background-color: rgb(227, 227, 227);
+                    }
+                }
+            }
+        }
+
+    }
+
+    .product-total-price {
+        flex: 0.2;
+        text-align: end;
+        font-family: PoppinsMedium;
+        color: #FA6A69;
+        font-size: 1rem;
+    }
+}
