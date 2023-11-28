@@ -16,6 +16,10 @@
             height: 75px;
         }
 
+        h1 {
+            cursor: pointer;
+        }
+
         .btn-remove-product {
             @include xBtn();
             width: 26px;

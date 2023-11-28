@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { addToCart, getProductById } from '../store/actions/board.action'
+import { UserMsg } from '../cmps/UserMsg'
 
 export function ProductDetails() {
     const [currProduct, setCurrProduct] = useState(null)
@@ -19,9 +20,10 @@ export function ProductDetails() {
     if (!currProduct) return <div>Loading...
         <button onClick={() => navigate('/')}>Back to shopping</button>
     </div>
-    
+
     return (
         <div className="product-details-container main-layout">
+            <UserMsg />
             <div className='product-details-inner-container'>
                 <div className='images-container'>
                     <img className='main-product-image' src={mainImg} alt="" />

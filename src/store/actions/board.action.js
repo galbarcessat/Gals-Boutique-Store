@@ -1,6 +1,7 @@
 import { store } from '../store'
 import { ADD_BOARD, ADD_ITEM_TO_CART, IS_CART_OPEN, REMOVE_BOARD, REMOVE_ITEM_FROM_CART, SET_BOARDS, UPDATE_BOARDS, UPDATE_CART } from '../reducers/board.reducer'
 import { boardService } from '../../services/board.service.local'
+import { showSuccessMsg } from '../../services/event-bus.service'
 
 
 //General Board Actions
@@ -27,8 +28,6 @@ export async function getBoardById(boardId, filterBy, sortBy) {
 
 export function getProductById(productId) {
     const products = store.getState().boardModule.boards
-    console.log('test:', store.getState().boardModule)
-    console.log('products FROM ACTION :', products)
     return products.find(product => product.id === productId)
 }
 
@@ -47,6 +46,7 @@ export function addToCart(ev, product) {
             type: ADD_ITEM_TO_CART, product: productToCart
         })
     }
+    showSuccessMsg('Added product to cart')
 }
 export function onChangeAmount(action, product) {
     if (action === '-') {
@@ -68,6 +68,7 @@ export function onRemoveCartProduct(product) {
     store.dispatch({
         type: REMOVE_ITEM_FROM_CART, productId: product.id
     })
+    showSuccessMsg('Product was removed from cart')
 }
 
 export function getTotalProductsPrice() {

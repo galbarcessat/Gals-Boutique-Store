@@ -5,6 +5,7 @@ import { SET_CATEGORY } from "../store/reducers/board.reducer"
 import { useState } from "react"
 import { useEffect } from "react"
 import { FilterSection } from "../cmps/FilterSection.jsx"
+import { UserMsg } from "../cmps/UserMsg"
 
 export function ProductsPage() {
     const products = useSelector(state => state.boardModule.boards)
@@ -55,6 +56,7 @@ export function ProductsPage() {
 
     return (
         <section className="products-page-outer-container main-layout">
+            <UserMsg />
             <section className="products-page-container">
                 <h1 className="products-title">Products</h1>
                 <div className="categories-nav-container">

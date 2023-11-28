@@ -9,12 +9,12 @@ import Aos from 'aos'
 import 'aos/dist/aos.css'
 
 import { HomePage } from './pages/HomePage'
-import { ProductDetails } from './cmps/ProductDetails'
 import { ProductsPage } from './pages/ProductsPage'
 import { HomeNavBar } from './cmps/HomeNavBar'
 import { Footer } from './cmps/Footer'
 import { ShoppingCart } from './cmps/ShoppingCart'
 import { CheckoutPage } from './pages/CheckoutPage'
+import { ProductDetails } from './pages/ProductDetails'
 
 export function App() {
 
