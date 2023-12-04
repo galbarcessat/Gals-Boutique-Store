@@ -10,7 +10,8 @@ export function ProductDetails() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        let product = getProductById(parseInt(productId))
+        console.log('productId:', productId)
+        let product = getProductById(productId)
         if (product) {
             setCurrProduct(product)
             setMainImg(product.images[0])

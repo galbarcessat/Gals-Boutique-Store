@@ -7,13 +7,14 @@ import { HomeBreakLine } from "../cmps/HomeBreakLine"
 import { CategoriesList } from "../cmps/CategoriesList"
 import { FeaturedProducts } from "../cmps/FeaturedProducts"
 import { DiscountShowing } from "../cmps/DiscountShowing"
-import { boardService } from "../services/board.service.local"
+import { productService } from "../services/board.service.local"
 import { UserMsg } from "../cmps/UserMsg"
+import { dataTest } from "../data/products"
+import { utilService } from "../services/util.service"
 
 
 export function HomePage() {
-    const products = useSelector(state => state.boardModule.boards)
-
+    const products = useSelector(state => state.boardModule.products)
     useEffect(() => {
         loadProducts()
     }, [])
@@ -23,12 +24,12 @@ export function HomePage() {
         return shuffledProducts.splice(0, 4)
     }
     function getAllCategories() {
-        return boardService.getAllCategories(products)
+        return productService.getAllCategories(products)
     }
 
     return (
         <section className="main-layout">
-            <UserMsg/>
+            <UserMsg />
             <HomeHero />
             <HomeBreakLine />
             <CategoriesList getAllCategories={getAllCategories} />

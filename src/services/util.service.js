@@ -3,6 +3,7 @@
 export const utilService = {
     makeId,
     makeLorem,
+    makeProductTitle,
     getRandomIntInclusive,
     loadFromStorage,
     saveToStorage,
@@ -75,15 +76,15 @@ function makeTaskId(length = 6) {
 //     return json
 // }
 
-// function makeLorem(size = 100) {
-//     var words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn']
-//     var txt = ''
-//     while (size > 0) {
-//         size--
-//         txt += words[Math.floor(Math.random() * words.length)] + ' '
-//     }
-//     return txt
-// }
+function makeLorem(size = 100) {
+    var words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn']
+    var txt = ''
+    while (size > 0) {
+        size--
+        txt += words[Math.floor(Math.random() * words.length)] + ' '
+    }
+    return txt
+}
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min)
@@ -251,7 +252,7 @@ function getNameInitials(fullname) {
     return names.map(name => name[0]).join('')
 }
 
-function makeLorem(size = 1) {
+function makeProductTitle(size = 1) {
     var words = [
         "Superman", "Batman", "Wonder Woman", "Spider-Man", "Iron Man",
         "Captain America", "Thor", "Hulk", "Black Widow", "Wolverine",

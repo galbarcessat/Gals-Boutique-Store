@@ -4,6 +4,21 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 1rem;
-    row-gap: 3rem;
-    padding-block-end: 6rem;
+    row-gap: 2.5rem;
+    padding-block-end: 3rem;
 }
+
+.MuiPagination-root {
+    margin-bottom: 3rem;
+}
+
+// .products-list-container {
+//     display: grid;
+//     grid-template-columns: repeat(auto-fill, 250px);
+//     align-items: center;
+//     justify-content: center;
+//     gap: 1rem;
+//     row-gap: 2.5rem;
+//     padding-block-end: 6rem;
+//     width: 100%;
+// }

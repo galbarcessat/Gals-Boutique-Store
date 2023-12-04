@@ -15,7 +15,7 @@ export const UPDATE_CART = 'UPDATE_CART'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 
 const initialState = {
-    boards: [],
+    products: [],
     selectedCategory: null,
     shoppingCart: [],
     isCartOpen: false,
@@ -27,19 +27,19 @@ export function boardReducer(state = initialState, action) {
     let newShoppingCart
     switch (action.type) {
         case SET_BOARDS:
-            return { ...state, boards: action.boards }
+            return { ...state, products: action.products }
 
         case REMOVE_BOARD:
-            newBoards = state.boards.filter(board => board._id !== action.boardId)
-            return { ...state, boards: newBoards }
+            newBoards = state.products.filter(board => board._id !== action.boardId)
+            return { ...state, products: newBoards }
 
         case ADD_BOARD:
-            newBoards = [...state.boards, action.board]
-            return { ...state, boards: newBoards }
+            newBoards = [...state.products, action.board]
+            return { ...state, products: newBoards }
 
         case UPDATE_BOARDS:
-            newBoards = state.boards.map(board => (board._id === action.board._id ? action.board : board))
-            return { ...state, boards: newBoards }
+            newBoards = state.products.map(board => (board._id === action.board._id ? action.board : board))
+            return { ...state, products: newBoards }
 
         case SET_CATEGORY:
             return { ...state, selectedCategory: action.selectedCategory }
