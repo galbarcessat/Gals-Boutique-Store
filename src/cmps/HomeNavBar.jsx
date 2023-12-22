@@ -36,10 +36,16 @@ export function HomeNavBar() {
                     <h1>Gal Design <span>.</span></h1>
                 </div>
 
-                <div className='cart-icon-container' onClick={() => openCart()}>
-                    <img className='cart-icon' src={CartIcon} alt="" />
-                    <div className='cart-items-counter'>{getCartAmount()}</div>
+                <div className='buttons-container'>
+
+                    <div onClick={() => navigate('/login')} className='btn-login'>Log in</div>
+
+                    <div className='cart-icon-container' onClick={() => openCart()}>
+                        <img className='cart-icon' src={CartIcon} alt="" />
+                        <div className='cart-items-counter'>{getCartAmount()}</div>
+                    </div>
                 </div>
+
             </div>
         </div>
     )

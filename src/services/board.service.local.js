@@ -19,7 +19,7 @@ export const productService = {
     getAllCategories
 }
 
-_createProducts()
+// _createProducts()
 // General Update function
 async function update(type, boardId, groupId = null, taskId = null, { key, value }) {
     try {
@@ -76,8 +76,8 @@ async function update(type, boardId, groupId = null, taskId = null, { key, value
 }
 // Board functions
 async function query() {
-    // return httpService.get(BASE_URL, null)
-    return await storageService.query(STORAGE_KEY)
+    return httpService.get(BASE_URL, null)
+    // return await storageService.query(STORAGE_KEY)
 }
 
 async function getBoardById(boardId, filterBy = { txt: '', person: null }, sortBy) {

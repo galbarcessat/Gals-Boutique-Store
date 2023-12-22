@@ -5,7 +5,7 @@ export function ProductPreview({ product }) {
     const navigate = useNavigate()
 
     return (
-        <div className="product-preview-container" onClick={() => navigate(`/product/${product.id}`)}>
+        <div className="product-preview-container" onClick={() => navigate(`/product/${product._id}`)}>
             <div className='image-container'>
                 <img src={product.images[0]} alt="" />
                 <div className="watch-product-btn">

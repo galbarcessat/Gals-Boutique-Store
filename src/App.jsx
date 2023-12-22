@@ -15,6 +15,7 @@ import { Footer } from './cmps/Footer'
 import { ShoppingCart } from './cmps/ShoppingCart'
 import { CheckoutPage } from './pages/CheckoutPage'
 import { ProductDetails } from './pages/ProductDetails'
+import { LoginSignUp } from './pages/LoginSignUp'
 
 export function App() {
 
@@ -33,11 +34,7 @@ export function App() {
           <Route element={<ProductsPage />} path="/product" />
           <Route element={<ProductDetails />} path="/product/:productId" />
           <Route element={<CheckoutPage />} path="/checkout" />
-
-          {/* <Route path="/auth">
-          <Route path="login" element={<LoginSignup />} />
-          <Route path="sign-up" element={<LoginSignup />} />
-        </Route> */}
+          <Route element={<LoginSignUp />} path="/login" />
         </Routes>
 
         <Footer />

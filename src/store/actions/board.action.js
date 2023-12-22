@@ -30,7 +30,7 @@ export function getProductById(productId) {
     const products = store.getState().boardModule.products
     console.log('products:', products)
     console.log('productId:', productId)
-    return products.find(product => product.id === productId)
+    return products.find(product => product._id === productId)
 }
 
 export function addToCart(ev, product) {

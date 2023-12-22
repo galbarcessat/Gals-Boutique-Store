@@ -15,8 +15,11 @@ import { utilService } from "../services/util.service"
 
 export function HomePage() {
     const products = useSelector(state => state.boardModule.products)
+
     useEffect(() => {
-        loadProducts()
+        if (!products || products.length === 0) {
+            loadProducts()
+        }
     }, [])
 
     function getFeaturedProducts() {
