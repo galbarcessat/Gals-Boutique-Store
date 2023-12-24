@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { login, signup } from "../store/actions/user.actions"
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
+import { UserMsg } from "../cmps/UserMsg"
 
 export function LoginSignUp() {
     const [credentials, setCredentials] = useState({ username: '', password: '' })
@@ -39,7 +41,7 @@ export function LoginSignUp() {
 
         try {
             let user = signup(credentials)
-            showSuccessMsg(`Welcome ${user.fullname}`)
+            showSuccessMsg(`Welcome ${user.username}`)
             navigate('/')
         } catch (error) {
             showErrorMsg('Cannot signup', error)
@@ -48,6 +50,7 @@ export function LoginSignUp() {
 
     return (
         <div className="login-signup-page">
+            <UserMsg />
             <h1>{dynLoginText}</h1>
 
             <form className="form-container" onSubmit={isSingUp ? onSignup : onLogin}>
@@ -57,6 +60,7 @@ export function LoginSignUp() {
                         type="text"
                         name="username"
                         id="username"
+                        autoComplete="username"
                         onChange={handleChange}
                         placeholder="Enter username" />
                 </div>
@@ -66,9 +70,19 @@ export function LoginSignUp() {
                         type="password"
                         name="password"
                         id="password"
+                        autoComplete="current-password"
                         onChange={handleChange}
                         placeholder="Enter password" />
                 </div>
+                {isSingUp && <div className="imgUrl-container">
+                    <label htmlFor="imgurl">Profile Img Url</label>
+                    <input
+                        type="text"
+                        name="imgurl"
+                        id="imgurl"
+                        onChange={handleChange}
+                        placeholder="Enter profile img url" />
+                </div>}
                 <button>{dynButtonText}</button>
             </form>
 

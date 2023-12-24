@@ -21,9 +21,9 @@ async function getById(userId) {
     // return storageService.get(STORAGE_KEY, userId)
 }
 
-async function login({ email, password }) {
+async function login({ username, password }) {
     try {
-        const user = await httpService.post(BASE_URL + 'login', { email, password })
+        const user = await httpService.post(BASE_URL + 'login', { username, password })
         if (user) return _setLoggedinUser(user)
     } catch (err) {
         console.log('err:', err)
@@ -35,11 +35,10 @@ async function login({ email, password }) {
     // else return Promise.reject('Invalid login')
 }
 
-async function signup({ email, password, fullname, imgUrl }) {
+async function signup({ username, password, imgUrl }) {
     const user = {
-        email,
+        username,
         password,
-        fullname,
         imgUrl: imgUrl ? imgUrl : 'https://cdn1.monday.com/dapulse_default_photo.png'
     }
     try {
@@ -70,7 +69,7 @@ function getLoggedinUser() {
 }
 
 function _setLoggedinUser(user) {
-    const userToSave = { _id: user._id, fullname: user.fullname, imgUrl: user.imgUrl }
+    const userToSave = { _id: user._id, username: user.username, imgUrl: user.imgUrl }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
     return userToSave
 }
