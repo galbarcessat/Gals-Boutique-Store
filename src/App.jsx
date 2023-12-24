@@ -16,6 +16,7 @@ import { ShoppingCart } from './cmps/ShoppingCart'
 import { CheckoutPage } from './pages/CheckoutPage'
 import { ProductDetails } from './pages/ProductDetails'
 import { LoginSignUp } from './pages/LoginSignUp'
+import { UserMsg } from './cmps/UserMsg'
 
 export function App() {
 
@@ -27,6 +28,7 @@ export function App() {
   return (
     <Provider store={store}>
       <Router>
+        <UserMsg />
         <HomeNavBar />
 
         <Routes>

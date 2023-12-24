@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { IS_CART_OPEN, SET_CATEGORY } from '../store/reducers/board.reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { Avatar } from '@mui/material';
+import { SET_USER } from '../store/reducers/user.reducer';
+import { useEffect } from 'react';
+import { logout } from '../store/actions/user.actions';
 
 export function HomeNavBar() {
     const shoppingCart = useSelector(state => state.boardModule.shoppingCart)
@@ -29,7 +32,7 @@ export function HomeNavBar() {
     function openCart() {
         dispatch({ type: IS_CART_OPEN, isCartOpen: true })
     }
-    console.log('user:', user)
+
     return (
         <div className="nav-bar-contianer main-layout full">
             <div className='nav-bar-inner-container'>
@@ -43,9 +46,13 @@ export function HomeNavBar() {
                     {!user ?
                         <div onClick={() => navigate('/login')} className='btn-login'>Log in</div>
                         :
-                        <div className='user-avatar'>
-                            <Avatar alt={user.username} src={user.ImgUrl} />
-                        </div>
+                        <Avatar
+                            onClick={() => logout()}
+                            className='user-avatar'
+                            alt={user.username}
+                            src={user.imgUrl}
+                            sx={{ width: 35, height: 35 }}
+                        />
                     }
 
                     <div className='cart-icon-container' onClick={() => openCart()}>

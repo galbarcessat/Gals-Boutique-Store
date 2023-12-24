@@ -12,7 +12,7 @@ export function CheckoutList({ products }) {
                 <h1>SUBTOTAL</h1>
             </div>
             <div className="products-list">
-                {products.map(product => <CheckoutProductPreview key={product.id} product={product} />)}
+                {products.map(product => <CheckoutProductPreview key={product._id} product={product} />)}
             </div>
         </div>
     )

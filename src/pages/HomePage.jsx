@@ -8,10 +8,6 @@ import { CategoriesList } from "../cmps/CategoriesList"
 import { FeaturedProducts } from "../cmps/FeaturedProducts"
 import { DiscountShowing } from "../cmps/DiscountShowing"
 import { productService } from "../services/board.service.local"
-import { UserMsg } from "../cmps/UserMsg"
-import { dataTest } from "../data/products"
-import { utilService } from "../services/util.service"
-
 
 export function HomePage() {
     const products = useSelector(state => state.boardModule.products)
@@ -32,7 +28,6 @@ export function HomePage() {
 
     return (
         <section className="main-layout">
-            <UserMsg />
             <HomeHero />
             <HomeBreakLine />
             <CategoriesList getAllCategories={getAllCategories} />

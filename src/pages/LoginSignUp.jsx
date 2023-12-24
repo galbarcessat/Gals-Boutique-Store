@@ -5,7 +5,7 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { UserMsg } from "../cmps/UserMsg"
 
 export function LoginSignUp() {
-    const [credentials, setCredentials] = useState({ username: '', password: '' })
+    const [credentials, setCredentials] = useState({ username: '', password: '', imgUrl : '' })
     const [isSingUp, setIsSignUp] = useState(false)
     const navigate = useNavigate()
 
@@ -25,22 +25,22 @@ export function LoginSignUp() {
     async function onLogin(ev = null) {
         if (ev) ev.preventDefault()
         if (!credentials.password) return
-
         try {
-            let user = login(credentials)
+            let user = await login(credentials)
             showSuccessMsg(`Hi again ${user.username}`)
             navigate('/')
         } catch (error) {
-            showErrorMsg('Cannot login, wrong credentials', ererrorr)
+            console.log('error LOGIN TEST:', error)
+            showErrorMsg('Cannot login, wrong credentials', error)
         }
     }
 
-    function onSignup(ev = null) {
+    async function onSignup(ev = null) {
         if (ev) ev.preventDefault()
         if (!credentials.username || !credentials.password) return
 
         try {
-            let user = signup(credentials)
+            let user = await signup(credentials)
             showSuccessMsg(`Welcome ${user.username}`)
             navigate('/')
         } catch (error) {
@@ -50,7 +50,6 @@ export function LoginSignUp() {
 
     return (
         <div className="login-signup-page">
-            <UserMsg />
             <h1>{dynLoginText}</h1>
 
             <form className="form-container" onSubmit={isSingUp ? onSignup : onLogin}>
@@ -75,11 +74,11 @@ export function LoginSignUp() {
                         placeholder="Enter password" />
                 </div>
                 {isSingUp && <div className="imgUrl-container">
-                    <label htmlFor="imgurl">Profile Img Url</label>
+                    <label htmlFor="imgUrl">Profile Img Url</label>
                     <input
                         type="text"
-                        name="imgurl"
-                        id="imgurl"
+                        name="imgUrl"
+                        id="imgUrl"
                         onChange={handleChange}
                         placeholder="Enter profile img url" />
                 </div>}
