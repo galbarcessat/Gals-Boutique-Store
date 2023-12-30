@@ -3,17 +3,22 @@ import StoreLogo from '../assets/imgs/StoreLogo.png'
 import { useNavigate } from 'react-router-dom';
 import { IS_CART_OPEN, SET_CATEGORY } from '../store/reducers/board.reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { Avatar } from '@mui/material';
-import { SET_USER } from '../store/reducers/user.reducer';
-import { useEffect } from 'react';
-import { logout } from '../store/actions/user.actions';
+import { Avatar, Tooltip } from '@mui/material';
+import { useState } from 'react';
 
 export function HomeNavBar() {
     const shoppingCart = useSelector(state => state.boardModule.shoppingCart)
     const user = useSelector(state => state.userModule.user)
 
+    const [scrolled, setScrolled] = useState(false)
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
+
+    window.onscroll = function handleScroll() {
+        const isScrolled = window.scrollY > 0
+        setScrolled(isScrolled)
+    }
 
     function navToHomePage() {
         dispatch({
@@ -33,8 +38,9 @@ export function HomeNavBar() {
         dispatch({ type: IS_CART_OPEN, isCartOpen: true })
     }
 
+    console.log('user:', user)
     return (
-        <div className="nav-bar-contianer main-layout full">
+        <div className={"nav-bar-contianer main-layout full " + (scrolled ? 'scrolled' : '')}>
             <div className='nav-bar-inner-container'>
                 <div className="nav-logo" onClick={navToHomePage}>
                     <img src={StoreLogo} alt="" />
@@ -44,15 +50,21 @@ export function HomeNavBar() {
                 <div className='buttons-container'>
 
                     {!user ?
-                        <div onClick={() => navigate('/login')} className='btn-login'>Log in</div>
+                        <div onClick={() => navigate('/login')} className='btn-nav'>Log in</div>
                         :
-                        <Avatar
-                            onClick={() => logout()}
-                            className='user-avatar'
-                            alt={user.username}
-                            src={user.imgUrl}
-                            sx={{ width: 35, height: 35 }}
-                        />
+                        <div className='user-container'>
+                            {user.isAdmin && <div onClick={() => navigate('/admin')} className='btn-nav'>Admin Panel</div>}
+                            <Tooltip title={user.username} arrow>
+                                <Avatar
+                                    onClick={() => navigate('/user')}
+                                    className='user-avatar'
+                                    alt={user.username}
+                                    src={user.imgUrl}
+                                    sx={{ width: 30, height: 30 }}
+                                />
+                            </Tooltip>
+                        </div>
+
                     }
 
                     <div className='cart-icon-container' onClick={() => openCart()}>

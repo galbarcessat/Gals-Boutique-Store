@@ -17,6 +17,7 @@ import { CheckoutPage } from './pages/CheckoutPage'
 import { ProductDetails } from './pages/ProductDetails'
 import { LoginSignUp } from './pages/LoginSignUp'
 import { UserMsg } from './cmps/UserMsg'
+import { UserDetails } from './pages/UserDetails'
 
 export function App() {
 
@@ -37,6 +38,7 @@ export function App() {
           <Route element={<ProductDetails />} path="/product/:productId" />
           <Route element={<CheckoutPage />} path="/checkout" />
           <Route element={<LoginSignUp />} path="/login" />
+          <Route element={<UserDetails />} path="/user" />
         </Routes>
 
         <Footer />

@@ -70,6 +70,9 @@ function getLoggedinUser() {
 
 function _setLoggedinUser(user) {
     const userToSave = { _id: user._id, username: user.username, imgUrl: user.imgUrl }
+    if (user.isAdmin) {
+        userToSave.isAdmin = true
+    }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN, JSON.stringify(userToSave))
     return userToSave
 }

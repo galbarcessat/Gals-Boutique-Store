@@ -67,9 +67,6 @@ export function ProductsPage() {
         } else {
             productsForPage = filteredProducts.slice(startIndex, endIndex)
         }
-        console.log('pageIdx:', pageIdx)
-        console.log('filteredProducts:', filteredProducts)
-        console.log('productsForPage:', productsForPage)
         setPageProducts(productsForPage)
     }
 
@@ -77,7 +74,6 @@ export function ProductsPage() {
         setPageIdx(value)
     }
 
-    console.log('pageIdx:', pageIdx)
     return (
         <section className="products-page-outer-container main-layout">
             <UserMsg />

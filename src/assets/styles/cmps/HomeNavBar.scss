@@ -6,7 +6,13 @@
     // box-shadow: 0 4px 4px #1d8cf214;
     position: sticky;
     top: 0;
+
     z-index: 5;
+
+    &.scrolled {
+        box-shadow: 0 4px 4px #1d8cf214;
+
+    }
 
     .nav-bar-inner-container {
         display: flex;
@@ -42,7 +48,18 @@
         justify-content: center;
         gap: 1.5rem;
 
-        .btn-login {
+        .user-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+
+            .user-avatar {
+                cursor: pointer;
+            }
+        }
+
+        .btn-nav {
             border-radius: 8px;
             padding: .5rem 1rem;
             cursor: pointer;

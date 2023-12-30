@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { addToCart, getProductById } from '../store/actions/board.action'
 import { UserMsg } from '../cmps/UserMsg'
+import { LoadingScreen } from '../cmps/LoadingScreen'
 
 export function ProductDetails() {
     const [currProduct, setCurrProduct] = useState(null)
@@ -10,17 +11,17 @@ export function ProductDetails() {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log('productId:', productId)
         let product = getProductById(productId)
         if (product) {
-            setCurrProduct(product)
-            setMainImg(product.images[0])
+            setTimeout(() => {
+                setCurrProduct(product)
+                setMainImg(product.images[0])
+            }, 2000);
+
         }
     }, [productId])
 
-    if (!currProduct) return <div>Loading...
-        <button onClick={() => navigate('/')}>Back to shopping</button>
-    </div>
+    if (!currProduct) return <LoadingScreen />
 
     return (
         <div className="product-details-container main-layout">

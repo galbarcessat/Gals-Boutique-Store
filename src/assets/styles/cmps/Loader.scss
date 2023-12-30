@@ -1,0 +1,10 @@
+.loader-container {
+    height: calc(100vh - 70px - 130px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+        width: 420px;
+    }
+}

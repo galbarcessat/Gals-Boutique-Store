@@ -1,0 +1,48 @@
+.user-details-container {
+    height: calc(100vh - 70px - 130px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8rem;
+
+    img {
+        border-radius: 50%;
+    }
+
+    .user-content {
+        display: flex;
+        flex-direction: column;
+        gap: 8rem;
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        .user-details-btns {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+
+            div {
+                background-color: #FA6A69;
+                border: none;
+                font-family: PoppinsMedium;
+                color: white;
+                padding: 0.7rem 2.5rem;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.5s;
+
+                &:hover {
+                    background-color: rgb(255, 79, 79);
+
+                }
+
+                &:first-of-type {
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+}

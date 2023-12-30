@@ -17,16 +17,18 @@
         position: relative;
 
         img {
-            // border-radius: 1rem;
             width: rem(250px);
             height: rem(250px);
         }
 
         &:hover {
 
-            button,
-            .watch-product-btn {
+            button {
                 display: block;
+            }
+
+            .product-preview-btns {
+                display: flex;
             }
 
             img {
@@ -34,18 +36,47 @@
             }
         }
 
-        .watch-product-btn {
+        .product-preview-btns {
             position: absolute;
             right: .5rem;
             top: .5rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            background-color: white;
-            padding-inline: 0.5rem;
-            border-radius: 50%;
             display: none;
+            flex-direction: column;
+            gap: 0.3rem;
 
-            &:hover {
-                background-color: rgb(243, 243, 243);
+            .product-btn {
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+                background-color: white;
+                padding-inline: 0.5rem;
+                border-radius: 50%;
+                width: rem(36px);
+                height: rem(36px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &.watch {
+                    &:hover {
+                        background-color: rgb(255, 213, 166);
+                    }
+                }
+
+                &.trash {
+                    &:hover {
+                        background-color: #FA6A69;
+                    }
+                }
+
+                &.edit {
+                    &:hover {
+                        background-color: #82cbff;
+                    }
+                }
+
+                &:hover{
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+
+                }
 
             }
         }
