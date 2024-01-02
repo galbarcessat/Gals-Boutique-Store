@@ -38,7 +38,6 @@ export function HomeNavBar() {
         dispatch({ type: IS_CART_OPEN, isCartOpen: true })
     }
 
-    console.log('user:', user)
     return (
         <div className={"nav-bar-contianer main-layout full " + (scrolled ? 'scrolled' : '')}>
             <div className='nav-bar-inner-container'>

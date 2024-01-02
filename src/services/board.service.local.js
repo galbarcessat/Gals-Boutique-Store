@@ -4,7 +4,6 @@ import { httpService } from './http.service.js'
 // import { SOCKET_EVENT_UPDATE_BOARD, socketService } from './socket.service.js'
 import { userService } from './user.service.js'
 import { utilService } from './util.service.js'
-import { dataTest } from '../data/products.js'
 
 const STORAGE_KEY = 'productsDB'
 const BASE_URL = 'product'
@@ -21,59 +20,59 @@ export const productService = {
 
 // _createProducts()
 // General Update function
-async function update(type, boardId, groupId = null, taskId = null, { key, value }) {
-    try {
-        const board = await getBoardById(boardId)
-        const activityType = getActivityType(key)
-        let groupIdx, taskIdx, activity
+// async function update(type, boardId, groupId = null, taskId = null, { key, value }) {
+//     try {
+//         const board = await getBoardById(boardId)
+//         const activityType = getActivityType(key)
+//         let groupIdx, taskIdx, activity
 
-        switch (type) {
-            case 'board':
-                if (!boardId) throw new Error('Error updating')
-                const oldBoard = board[key]
-                board[key] = value
+//         switch (type) {
+//             case 'board':
+//                 if (!boardId) throw new Error('Error updating')
+//                 const oldBoard = board[key]
+//                 board[key] = value
 
-                if (key === 'groups' || key === 'kanbanCmpsOrder' || key === 'cmpsOrder') break
-                activity = await createActivity({ type: activityType, from: oldBoard, to: value }, board._id)
-                board.activities.unshift(activity)
-                break
+//                 if (key === 'groups' || key === 'kanbanCmpsOrder' || key === 'cmpsOrder') break
+//                 activity = await createActivity({ type: activityType, from: oldBoard, to: value }, board._id)
+//                 board.activities.unshift(activity)
+//                 break
 
-            case 'group':
-                if (!groupId) throw new Error('Error updating')
-                groupIdx = board.groups.findIndex(group => group.id === groupId)
-                const oldGroup = board.groups[groupIdx][key]
-                board.groups[groupIdx][key] = value
+//             case 'group':
+//                 if (!groupId) throw new Error('Error updating')
+//                 groupIdx = board.groups.findIndex(group => group.id === groupId)
+//                 const oldGroup = board.groups[groupIdx][key]
+//                 board.groups[groupIdx][key] = value
 
-                activity = await createActivity({ type: activityType, from: oldGroup[key], to: value }, board._id, groupId)
-                board.activities.unshift(activity)
-                break
+//                 activity = await createActivity({ type: activityType, from: oldGroup[key], to: value }, board._id, groupId)
+//                 board.activities.unshift(activity)
+//                 break
 
-            case 'task':
-                if (!taskId) throw new Error('Error updating')
-                groupIdx = board.groups.findIndex(group => group.id === groupId)
-                taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
-                const oldTask = board.groups[groupIdx].tasks[taskIdx][key]
-                board.groups[groupIdx].tasks[taskIdx][key] = value
+//             case 'task':
+//                 if (!taskId) throw new Error('Error updating')
+//                 groupIdx = board.groups.findIndex(group => group.id === groupId)
+//                 taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+//                 const oldTask = board.groups[groupIdx].tasks[taskIdx][key]
+//                 board.groups[groupIdx].tasks[taskIdx][key] = value
 
-                activity = await createActivity({ type: activityType, from: oldTask, to: value }, boardId, groupId, taskId)
-                board.activities.unshift(activity)
-                break
+//                 activity = await createActivity({ type: activityType, from: oldTask, to: value }, boardId, groupId, taskId)
+//                 board.activities.unshift(activity)
+//                 break
 
-            default:
-                break
-        }
+//             default:
+//                 break
+//         }
 
-        // let updatedBoard = await httpService.put(`${BASE_URL}/${boardId}`, board)
-        return await storageService.put(STORAGE_KEY, board)
-        // socketService.emit(SOCKET_EVENT_UPDATE_BOARD, boardId)
-        return updatedBoard
-    }
-    catch (err) {
-        console.log(err)
-        throw err
-    }
+//         // let updatedBoard = await httpService.put(`${BASE_URL}/${boardId}`, board)
+//         return await storageService.put(STORAGE_KEY, board)
+//         // socketService.emit(SOCKET_EVENT_UPDATE_BOARD, boardId)
+//         return updatedBoard
+//     }
+//     catch (err) {
+//         console.log(err)
+//         throw err
+//     }
 
-}
+// }
 // Board functions
 async function query() {
     return httpService.get(BASE_URL, null)
@@ -133,9 +132,13 @@ async function getBoardById(boardId, filterBy = { txt: '', person: null }, sortB
     return board
 }
 
-async function save(board) {
-    // return await httpService.post(BASE_URL, board)
-    return await storageService.post(STORAGE_KEY, board)
+async function save(product) {
+    return await httpService.post(BASE_URL, product)
+    // return await storageService.post(STORAGE_KEY, board)
+}
+
+async function update(updatedProduct) {
+    return await httpService.put(`${BASE_URL}/${updatedProduct._id}`, updatedProduct)
 }
 
 async function remove(boardId) {

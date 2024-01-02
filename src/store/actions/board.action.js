@@ -1,5 +1,5 @@
 import { store } from '../store'
-import { ADD_BOARD, ADD_ITEM_TO_CART, IS_CART_OPEN, REMOVE_BOARD, REMOVE_ITEM_FROM_CART, SET_BOARDS, UPDATE_BOARDS, UPDATE_CART } from '../reducers/board.reducer'
+import { ADD_BOARD, ADD_ITEM_TO_CART, IS_CART_OPEN, REMOVE_BOARD, REMOVE_ITEM_FROM_CART, SET_BOARDS, UPDATE_PRODUCTS, UPDATE_CART } from '../reducers/board.reducer'
 import { productService } from '../../services/board.service.local'
 import { showSuccessMsg } from '../../services/event-bus.service'
 
@@ -28,15 +28,24 @@ export async function getBoardById(boardId, filterBy, sortBy) {
 
 export function getProductById(productId) {
     const products = store.getState().boardModule.products
-    console.log('products:', products)
-    console.log('productId:', productId)
     return products.find(product => product._id === productId)
+}
+
+export async function updateProduct(product) {
+    try {
+        const updatedProduct = await productService.update(product)
+        store.dispatch({ type: UPDATE_PRODUCTS, product : updatedProduct })
+
+    } catch (error) {
+        console.log('error updating product:', error)
+        throw error
+    }
 }
 
 export function addToCart(ev, product) {
     ev.stopPropagation()
     const productsInCart = store.getState().boardModule.shoppingCart
-    let productFromCart = productsInCart.find(item => item.id === product.id)
+    let productFromCart = productsInCart.find(item => item._id === product._id)
     if (productFromCart) {
         productFromCart.amount++
         store.dispatch({
@@ -67,8 +76,9 @@ export function onChangeAmount(action, product) {
 }
 
 export function onRemoveCartProduct(product) {
+    console.log('product:', product)
     store.dispatch({
-        type: REMOVE_ITEM_FROM_CART, productId: product.id
+        type: REMOVE_ITEM_FROM_CART, productId: product._id
     })
     showSuccessMsg('Product was removed from cart')
 }

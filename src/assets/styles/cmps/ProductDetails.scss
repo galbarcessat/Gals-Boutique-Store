@@ -12,6 +12,7 @@
             align-items: start;
             gap: 1.5rem;
             max-width: 700px;
+            width: 700px;
 
             h1 {
                 font-size: 2rem;
@@ -53,6 +54,7 @@
             padding: 1rem;
             border: 1px solid grey;
             border-radius: 1rem;
+            height: max-content;
             // height: rem(780px);
             // width: rem(620px);
 

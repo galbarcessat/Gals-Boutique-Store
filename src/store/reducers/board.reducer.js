@@ -1,5 +1,5 @@
 export const SET_BOARDS = 'SET_BOARDS'
-export const UPDATE_BOARDS = 'UPDATE_BOARDS'
+export const UPDATE_PRODUCTS = 'UPDATE_BOARDS'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
 
@@ -23,23 +23,23 @@ const initialState = {
 }
 
 export function boardReducer(state = initialState, action) {
-    let newBoards
+    let newProducts
     let newShoppingCart
     switch (action.type) {
         case SET_BOARDS:
             return { ...state, products: action.products }
 
         case REMOVE_BOARD:
-            newBoards = state.products.filter(board => board._id !== action.boardId)
-            return { ...state, products: newBoards }
+            newProducts = state.products.filter(board => board._id !== action.boardId)
+            return { ...state, products: newProducts }
 
         case ADD_BOARD:
-            newBoards = [...state.products, action.board]
-            return { ...state, products: newBoards }
+            newProducts = [...state.products, action.board]
+            return { ...state, products: newProducts }
 
-        case UPDATE_BOARDS:
-            newBoards = state.products.map(board => (board._id === action.board._id ? action.board : board))
-            return { ...state, products: newBoards }
+        case UPDATE_PRODUCTS:
+            newProducts = state.products.map(product => (product._id === action.product._id ? action.product : product))
+            return { ...state, products: newProducts }
 
         case SET_CATEGORY:
             return { ...state, selectedCategory: action.selectedCategory }
@@ -51,7 +51,7 @@ export function boardReducer(state = initialState, action) {
             return { ...state, shoppingCart: action.shoppingCart }
 
         case REMOVE_ITEM_FROM_CART:
-            newShoppingCart = state.shoppingCart.filter(product => product.id !== action.productId)
+            newShoppingCart = state.shoppingCart.filter(product => product._id !== action.productId)
             console.log('newShoppingCart:', newShoppingCart)
             return { ...state, shoppingCart: newShoppingCart }
 
@@ -60,7 +60,7 @@ export function boardReducer(state = initialState, action) {
             return { ...state, shoppingCart: newShoppingCart }
 
         case UPDATE_CART:
-            newShoppingCart = state.shoppingCart.map(product => (product.id === action.product.id ? action.product : product))
+            newShoppingCart = state.shoppingCart.map(product => (product._id === action.product._id ? action.product : product))
             return { ...state, shoppingCart: newShoppingCart }
 
         case SET_IS_LOADING:

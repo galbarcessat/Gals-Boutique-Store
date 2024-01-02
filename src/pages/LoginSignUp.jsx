@@ -5,7 +5,7 @@ import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service"
 import { UserMsg } from "../cmps/UserMsg"
 
 export function LoginSignUp() {
-    const [credentials, setCredentials] = useState({ username: '', password: '', imgUrl : '' })
+    const [credentials, setCredentials] = useState({ username: '', password: '', imgUrl: '' })
     const [isSingUp, setIsSignUp] = useState(false)
     const navigate = useNavigate()
 

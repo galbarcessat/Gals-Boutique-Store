@@ -16,7 +16,10 @@ export function UserDetails() {
         <div className="user-details-container">
             <img src={user.imgUrl} alt={user.username} />
             <div className="user-content">
-                <h1>Username : {user.username}</h1>
+                <div>
+                    <h1>Username : {user.username}</h1>
+                    {user.isAdmin && <h2>Admin</h2>}
+                </div>
                 <div className="user-details-btns">
                     <div onClick={() => onLogout()} className="btn-logout">Logout</div>
                     <div onClick={() => navigate('/')} className="btn-shopping">Go back to shopping</div>

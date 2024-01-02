@@ -18,6 +18,7 @@ import { ProductDetails } from './pages/ProductDetails'
 import { LoginSignUp } from './pages/LoginSignUp'
 import { UserMsg } from './cmps/UserMsg'
 import { UserDetails } from './pages/UserDetails'
+import { AdminPanel } from './pages/AdminPanel'
 
 export function App() {
 
@@ -39,6 +40,7 @@ export function App() {
           <Route element={<CheckoutPage />} path="/checkout" />
           <Route element={<LoginSignUp />} path="/login" />
           <Route element={<UserDetails />} path="/user" />
+          <Route element={<AdminPanel />} path="/admin" />
         </Routes>
 
         <Footer />

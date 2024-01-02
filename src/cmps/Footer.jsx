@@ -2,6 +2,7 @@ import StoreLogo from '../assets/imgs/StoreLogo.png'
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
+
 export function Footer() {
 
     return (
