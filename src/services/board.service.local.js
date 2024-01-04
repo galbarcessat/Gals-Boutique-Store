@@ -141,9 +141,9 @@ async function update(updatedProduct) {
     return await httpService.put(`${BASE_URL}/${updatedProduct._id}`, updatedProduct)
 }
 
-async function remove(boardId) {
-    // return httpService.delete(`${BASE_URL}/${boardId}`, boardId)
-    return await storageService.remove(STORAGE_KEY, boardId)
+async function remove(productId) {
+    return httpService.delete(`${BASE_URL}/${productId}`, productId)
+    // return await storageService.remove(STORAGE_KEY, boardId)
 }
 
 

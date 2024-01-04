@@ -6,16 +6,20 @@ import { useState } from "react"
 import { useEffect } from "react"
 import { FilterSection } from "../cmps/FilterSection.jsx"
 import { UserMsg } from "../cmps/UserMsg"
-import { Pagination } from "@mui/material"
+import { Pagination, Tooltip } from "@mui/material"
+import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from "react-router-dom"
 
 export function ProductsPage() {
     const products = useSelector(state => state.boardModule.products)
+    const user = useSelector(state => state.userModule.user)
     const selectedCategory = useSelector(state => state.boardModule.selectedCategory)
     const [productsToDisplay, setProductsToDisplay] = useState([])
     const [filterSortBy, setFilterSortBy] = useState({ txt: '', price: '', sortBy: '' })
     const [pageIdx, setPageIdx] = useState(1)
     const [pageProducts, setPageProducts] = useState(productsToDisplay)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         setSelectedCategory(selectedCategory)
@@ -102,8 +106,14 @@ export function ProductsPage() {
                 <FilterSection filterSortBy={filterSortBy} setFilterSortBy={setFilterSortBy} />
                 <ProductsList products={pageProducts} />
                 <Pagination count={Math.ceil(productsToDisplay.length / 15)} page={pageIdx} onChange={handlePageChange} shape="rounded" />
-                
             </section>
+
+            {user?.isAdmin && <Tooltip title="Add product" placement="top" arrow>
+                <div className="btn-add-product" onClick={() => navigate('/add')}>
+                    <AddIcon fontSize="large" />
+                </div>
+            </Tooltip>}
+
         </section>
     )
 

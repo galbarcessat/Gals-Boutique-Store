@@ -1,5 +1,5 @@
 import { store } from '../store'
-import { ADD_BOARD, ADD_ITEM_TO_CART, IS_CART_OPEN, REMOVE_BOARD, REMOVE_ITEM_FROM_CART, SET_BOARDS, UPDATE_PRODUCTS, UPDATE_CART } from '../reducers/board.reducer'
+import { ADD_PRODUCT, ADD_ITEM_TO_CART, IS_CART_OPEN, REMOVE_PRODUCT, REMOVE_ITEM_FROM_CART, SET_BOARDS, UPDATE_PRODUCTS, UPDATE_CART } from '../reducers/board.reducer'
 import { productService } from '../../services/board.service.local'
 import { showSuccessMsg } from '../../services/event-bus.service'
 
@@ -31,10 +31,15 @@ export function getProductById(productId) {
     return products.find(product => product._id === productId)
 }
 
+export async function deleteProduct(productId) {
+    await productService.remove(productId)
+    store.dispatch({ type: REMOVE_PRODUCT, productId })
+}
+
 export async function updateProduct(product) {
     try {
         const updatedProduct = await productService.update(product)
-        store.dispatch({ type: UPDATE_PRODUCTS, product : updatedProduct })
+        store.dispatch({ type: UPDATE_PRODUCTS, product: updatedProduct })
 
     } catch (error) {
         console.log('error updating product:', error)

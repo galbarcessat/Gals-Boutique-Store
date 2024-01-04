@@ -11,6 +11,7 @@ export function CategoryPreview({ category }) {
         })
         navigate('/product')
     }
+
     return (
         <div className="category-card" onClick={() => setSelectedCategory(category.name)}>
             <img src={category.image} alt={category.name + 'image'} />

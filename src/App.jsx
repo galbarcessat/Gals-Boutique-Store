@@ -19,6 +19,7 @@ import { LoginSignUp } from './pages/LoginSignUp'
 import { UserMsg } from './cmps/UserMsg'
 import { UserDetails } from './pages/UserDetails'
 import { AdminPanel } from './pages/AdminPanel'
+import { AddProductPage } from './cmps/AddProductPage'
 
 export function App() {
 
@@ -41,6 +42,7 @@ export function App() {
           <Route element={<LoginSignUp />} path="/login" />
           <Route element={<UserDetails />} path="/user" />
           <Route element={<AdminPanel />} path="/admin" />
+          <Route element={<AddProductPage />} path="/add" />
         </Routes>
 
         <Footer />

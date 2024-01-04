@@ -1,7 +1,7 @@
 export const SET_BOARDS = 'SET_BOARDS'
 export const UPDATE_PRODUCTS = 'UPDATE_BOARDS'
-export const REMOVE_BOARD = 'REMOVE_BOARD'
-export const ADD_BOARD = 'ADD_BOARD'
+export const REMOVE_PRODUCT = 'REMOVE_BOARD'
+export const ADD_PRODUCT = 'ADD_BOARD'
 
 export const SET_CATEGORY = 'SET_CATEGORY'
 
@@ -29,12 +29,12 @@ export function boardReducer(state = initialState, action) {
         case SET_BOARDS:
             return { ...state, products: action.products }
 
-        case REMOVE_BOARD:
-            newProducts = state.products.filter(board => board._id !== action.boardId)
+        case REMOVE_PRODUCT:
+            newProducts = state.products.filter(product => product._id !== action.productId)
             return { ...state, products: newProducts }
 
-        case ADD_BOARD:
-            newProducts = [...state.products, action.board]
+        case ADD_PRODUCT:
+            newProducts = [...state.products, action.product]
             return { ...state, products: newProducts }
 
         case UPDATE_PRODUCTS:
@@ -52,7 +52,6 @@ export function boardReducer(state = initialState, action) {
 
         case REMOVE_ITEM_FROM_CART:
             newShoppingCart = state.shoppingCart.filter(product => product._id !== action.productId)
-            console.log('newShoppingCart:', newShoppingCart)
             return { ...state, shoppingCart: newShoppingCart }
 
         case ADD_ITEM_TO_CART:
