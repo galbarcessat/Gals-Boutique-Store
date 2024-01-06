@@ -7,7 +7,6 @@ import { useState, useRef } from "react"
 // {{ id: 27, name: 'Miscellaneous', image: 'https://i.imgur.com/BG8J0Fj.jpg' }}
 export function AddProductPage() {
     const [newProduct, setNewProduct] = useState({ title: '', description: '', category: '', price: '', images: [] })
-    const [images, setImages] = useState([])
     const [isDragging, setIsDragging] = useState(false)
     const filesInputRef = useRef(null)
 
@@ -22,22 +21,28 @@ export function AddProductPage() {
 
     function saveFiles(files) {
         if (files.length > 0) {
-            for (let i = 0; i < files.length; i++) {
-                if (files[i].type.split('/')[0] !== 'image') continue
-                if (!images.some(image => image.name === files[i].name)) {
-                    setImages(prevImages => [...prevImages,
-                    {
-                        name: files[i].name,
-                        url: URL.createObjectURL(files[i])
+            setNewProduct((prevNewProduct) => {
+                const updatedImages = [...prevNewProduct.images]
+
+                for (let i = 0; i < files.length; i++) {
+                    if (files[i].type.split('/')[0] !== 'image') continue
+                    if (!updatedImages.some((image) => image === files[i].url)) {
+                        updatedImages.push(
+                            URL.createObjectURL(files[i]),
+                        )
                     }
-                    ])
                 }
-            }
+
+                return { ...prevNewProduct, images: updatedImages }
+            })
         }
     }
 
     function deleteImage(index) {
-        setImages(prevImages => prevImages.filter((image, i) => i !== index))
+        setNewProduct((prevNewProduct) => {
+            const updatedImages = prevNewProduct.images.filter((image, i) => i !== index)
+            return { ...prevNewProduct, images: updatedImages }
+        })
     }
 
     function onDragOver(event) {
@@ -57,6 +62,16 @@ export function AddProductPage() {
         const files = event.dataTransfer.files
         saveFiles(files)
     }
+
+    function onSaveProduct() {
+        console.log('newProduct:', newProduct)
+        // change newProduct.category to the object of the category with getCategoryById()
+        // check if all fields were checked/filled
+        // save new product to db 
+        // save new product to store 
+        // navigate to productDetails with the new product id
+    }
+
 
     function handleChange({ target }) {
         const field = target.name
@@ -80,16 +95,6 @@ export function AddProductPage() {
         setNewProduct((prevNewProduct) => ({ ...prevNewProduct, [field]: value }))
     }
     console.log('newProduct:', newProduct)
-    {/* אפשרות לכתוב
-            כותרת
-            תיאור
-            לבחור קטגוריה מתוך dropdown
-            לכתוב מחיר
-            להוסיף עד 3 תמונות */
-        // בשמירה לדאוג לcategory שיהיה אובייקט
-    }
-    {/* <form action="submit"> */ }
-    console.log('images:', images)
     return (
         <div className="add-product-page main-layout">
             <h1>New product</h1>
@@ -122,7 +127,6 @@ export function AddProductPage() {
                         </textarea>
                     </div>
                 </div>
-                {/* change it so when i upload images it will update the newProduct state instead of the images state */}
                 <div className="right-container">
                     <div className="card">
                         <div className="top">
@@ -145,22 +149,18 @@ export function AddProductPage() {
                             <input type="file" name="file" className="file" multiple ref={filesInputRef} onChange={onFilesSelect} />
                         </div>
                         <div className="container">
-                            {images.map((image, index) => (
+                            {newProduct.images.map((image, index) => (
                                 <div className="image" key={index}>
                                     <span className="delete" onClick={() => deleteImage(index)}>
                                         &times;
                                     </span>
-                                    <img src={image.url} alt={image.name} />
+                                    <img src={image} alt={image} />
                                 </div>
                             ))}
                         </div>
-
-                        {/* <button>
-                            Upload
-                        </button> */}
                     </div>
 
-                    <div className="btn-save-product">Save product</div>
+                    <div onClick={() => onSaveProduct()} className="btn-save-product">Save product</div>
                 </div>
 
             </div>
@@ -168,68 +168,3 @@ export function AddProductPage() {
         </div>
     )
 }
-
-
-
-
-
-
-// <div className="filter-by-text">
-// <label htmlFor="Title">Title :</label>
-// <TextField id="outlined-basic" label="Title" variant="outlined" size="small" name="title"
-//     onChange={handleChange} value={newProduct.title}
-// />
-// </div>
-// <div>
-// <label htmlFor="">Description : </label>
-// <TextareaAutosize
-//     style={{
-//         fontSize: '16px',
-//     }}
-//     placeholder="Description"
-//     variant="standard"
-//     name='description'
-//     label='Description'
-//     value={newProduct.description}
-//     onChange={handleChange}
-// />
-
-// </div>
-// <div>
-// <label htmlFor="category">Category : </label>
-// <FormControl fullWidth className="category-select" size="small">
-//     <InputLabel id="demo-simple-select-label">Category</InputLabel>
-//     <Select
-//         labelId="demo-simple-select-label"
-//         id="demo-simple-select"
-//         value={newProduct.category}
-//         name="category"
-//         label='Category'
-//         onChange={handleChange}
-//     >
-//         <MenuItem value={{ id: 23, name: 'Clothes', image: 'https://i.imgur.com/QkIa5tT.jpeg' }}>
-//             Clothes
-//         </MenuItem>
-//         <MenuItem value={{ id: 24, name: 'Electronics', image: 'https://i.imgur.com/ZANVnHE.jpeg' }}>
-//             Electronics
-//         </MenuItem>
-//         <MenuItem value={{ id: 25, name: 'Furniture', image: 'https://i.imgur.com/Qphac99.jpeg' }}>
-//             Furniture
-//         </MenuItem>
-//         <MenuItem value={{ id: 26, name: 'Shoes', image: 'https://i.imgur.com/qNOjJje.jpeg' }}>
-//             Shoes
-//         </MenuItem>
-//         <MenuItem value={{ id: 27, name: 'Miscellaneous', image: 'https://i.imgur.com/BG8J0Fj.jpg' }}>
-//             Miscellaneous
-//         </MenuItem>
-//     </Select>
-// </FormControl>
-// </div>
-// <div className="filter-by-price">
-// <label>Price :</label>
-// <TextField id="outlined-basic" label="Price" variant="outlined" size="small" name="price" type="number"
-//     onChange={handleChange} value={newProduct.price}
-// />
-// </div>
-// {/* <button>Save</button>
-// </form> */}
