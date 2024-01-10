@@ -1,5 +1,5 @@
 import { store } from '../store'
-import { ADD_PRODUCT, ADD_ITEM_TO_CART, IS_CART_OPEN, REMOVE_PRODUCT, REMOVE_ITEM_FROM_CART, SET_BOARDS, UPDATE_PRODUCTS, UPDATE_CART } from '../reducers/board.reducer'
+import { ADD_PRODUCT, ADD_ITEM_TO_CART, IS_CART_OPEN, REMOVE_PRODUCT, REMOVE_ITEM_FROM_CART, SET_PRODUCTS, UPDATE_PRODUCTS, UPDATE_CART } from '../reducers/board.reducer'
 import { productService } from '../../services/board.service.local'
 import { showSuccessMsg } from '../../services/event-bus.service'
 
@@ -9,7 +9,7 @@ export async function loadProducts() {
     try {
         const products = await productService.query()
         console.log('Products from DB:', products)
-        store.dispatch({ type: SET_BOARDS, products: products })
+        store.dispatch({ type: SET_PRODUCTS, products: products })
     } catch (err) {
         console.log('Board Actions: err in Loading Boards', err)
         throw err
@@ -28,12 +28,31 @@ export async function getBoardById(boardId, filterBy, sortBy) {
 
 export function getProductById(productId) {
     const products = store.getState().boardModule.products
+    console.log('products:', products)
     return products.find(product => product._id === productId)
 }
 
 export async function deleteProduct(productId) {
-    await productService.remove(productId)
-    store.dispatch({ type: REMOVE_PRODUCT, productId })
+    try {
+        await productService.remove(productId)
+        store.dispatch({ type: REMOVE_PRODUCT, productId })
+        console.log('deleted product:')
+
+    } catch (error) {
+        console.log('error:', error)
+        throw error
+    }
+}
+
+export async function addProduct(product) {
+    try {
+        let newProduct = await productService.save(product)
+        store.dispatch({ type: ADD_PRODUCT, product: newProduct })
+        return newProduct
+    } catch (error) {
+        console.log('error:', error)
+        throw error
+    }
 }
 
 export async function updateProduct(product) {
@@ -64,6 +83,7 @@ export function addToCart(ev, product) {
     }
     // showSuccessMsg('Added product to cart')
 }
+
 export function onChangeAmount(action, product) {
     if (action === '-') {
         if (product.amount === 1) {

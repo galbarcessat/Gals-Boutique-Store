@@ -23,7 +23,7 @@ export function ProductsPage() {
 
     useEffect(() => {
         setSelectedCategory(selectedCategory)
-    }, [filterSortBy, pageIdx])
+    }, [filterSortBy, pageIdx, products.length])
 
     function getAllCategories() {
         return productService.getAllCategories(products)

@@ -146,7 +146,6 @@ async function remove(productId) {
     // return await storageService.remove(STORAGE_KEY, boardId)
 }
 
-
 async function _createProducts() {
     let products = utilService.loadFromStorage(STORAGE_KEY)
     // let products = httpService.get(BASE_URL, null)
@@ -590,7 +589,6 @@ async function _createProducts() {
         // products.forEach(board => httpService.post(BASE_URL, board))
     }
 }
-
 
 function getAllCategories(products) {
     let categories = products.reduce((acc, product) => {

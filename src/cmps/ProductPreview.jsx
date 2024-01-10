@@ -5,14 +5,19 @@ import { Modal } from '@mui/base/Modal';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service';
 
 export function ProductPreview({ product, isAdmin }) {
     const navigate = useNavigate()
 
-
-    function onDeleteProduct(ev, productId) {
+    async function onDeleteProduct(ev, productId) {
         ev.stopPropagation()
-        // deleteProduct(productId)
+        try {
+            deleteProduct(productId)
+            showSuccessMsg(`Deleted product ${product._id}`)
+        } catch (error) {
+            showErrorMsg(`Had error deleting product ${product._id}`)
+        }
     }
 
     return (
@@ -27,9 +32,6 @@ export function ProductPreview({ product, isAdmin }) {
                     {isAdmin &&
                         <>
                             <Tooltip title="Delete" placement="left" arrow>
-                                {/* Add an onClick delete function - 
-                                remove from DB and then from store (make an action)
-                                opens a modal with two buttons one accepts the delete the other cancels it */}
                                 <DeleteOutlineOutlinedIcon className='product-btn' onClick={(ev) => onDeleteProduct(ev, product._id)} />
                             </Tooltip>
                             <Tooltip title="Edit" placement="left" arrow>

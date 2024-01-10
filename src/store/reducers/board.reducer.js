@@ -1,7 +1,7 @@
-export const SET_BOARDS = 'SET_BOARDS'
-export const UPDATE_PRODUCTS = 'UPDATE_BOARDS'
-export const REMOVE_PRODUCT = 'REMOVE_BOARD'
-export const ADD_PRODUCT = 'ADD_BOARD'
+export const SET_PRODUCTS = 'SET_PRODUCTS'
+export const UPDATE_PRODUCTS = 'UPDATE_PRODUCTS'
+export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
+export const ADD_PRODUCT = 'ADD_PRODUCT'
 
 export const SET_CATEGORY = 'SET_CATEGORY'
 
@@ -22,15 +22,16 @@ const initialState = {
     isLoading: false
 }
 
-export function boardReducer(state = initialState, action) {
+export function productReducer(state = initialState, action) {
     let newProducts
     let newShoppingCart
     switch (action.type) {
-        case SET_BOARDS:
+        case SET_PRODUCTS:
             return { ...state, products: action.products }
 
         case REMOVE_PRODUCT:
             newProducts = state.products.filter(product => product._id !== action.productId)
+            console.log('newProducts in reducer:', newProducts)
             return { ...state, products: newProducts }
 
         case ADD_PRODUCT:
