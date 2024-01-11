@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { addToCart, deleteProduct } from '../store/actions/board.action'
 import { Tooltip } from '@mui/material';
-import { Modal } from '@mui/base/Modal';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -28,7 +27,6 @@ export function ProductPreview({ product, isAdmin }) {
                     <Tooltip title="Watch" placement="left" arrow>
                         <VisibilityIcon className='product-btn' />
                     </Tooltip>
-
                     {isAdmin &&
                         <>
                             <Tooltip title="Delete" placement="left" arrow>
